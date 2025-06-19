@@ -1,27 +1,22 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
-import {  useState } from "react";
+import { useState } from "react";
 
 const Login = () => {
   const [role, setRole] = useState("teacher");
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate(); // ✅ to‘g‘rilangan joy
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Demo uchun: har doim login qilamiz
     if (userId && password) {
       localStorage.setItem("user", JSON.stringify({ userId, role }));
-      window.location.href = "/"; // HomePage'ga o'tkazamiz
+      navigate("/"); // ✅ foydalanuvchini bosh sahifaga yo‘naltirish
     }
   };
-
-
-  
-  
-  
-  
 
   return (
     <div className="login_bg">
