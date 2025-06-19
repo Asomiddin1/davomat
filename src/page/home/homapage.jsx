@@ -1,5 +1,4 @@
-// homapage.jsx
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StudentPanel from "../../component/panel/student-panel";
 import TeacherPanel from "../../component/panel/teacher-panel";
@@ -7,20 +6,24 @@ import ParentsPanel from "../../component/panel/parents-panel";
 
 function Homapage() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!storedUser) {
       navigate("/login");
+    } else {
+      setUser(storedUser);
     }
   }, []);
 
+  if (!user) return null; // user yuklanayotgan bo‘lsa, hech narsa ko‘rsatmaydi
+
   return (
     <>
-      {user.role == "student" && <StudentPanel />}
-      {user.role == "teacher" && <TeacherPanel />}
-      {user.role == "parent" && <ParentsPanel />}
+      {user.role === "student" && <StudentPanel />}
+      {user.role === "teacher" && <TeacherPanel />}
+      {user.role === "parent" && <ParentsPanel />}
     </>
   );
 }
