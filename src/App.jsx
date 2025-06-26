@@ -9,6 +9,7 @@ import RootLayout from "./layout/rootLayout";
 import Login from "./page/login/login";
 import Homapage from "./page/home/homapage";
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} >

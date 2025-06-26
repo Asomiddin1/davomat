@@ -1,10 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const DateCarousel = () => {
-  // currentDate ni hozirgi sanaga o'rnatish
+  // Joriy tanlangan sanani saqlash uchun holat (state)
   const [currentDate, setCurrentDate] = useState(new Date());
+  // Ekranda ko'rsatiladigan sanalar sonini saqlash uchun holat
+  const [datesToShow, setDatesToShow] = useState(7); // Boshlang'ich qiymat: 7 ta sana
+  // Karusel konteyneriga murojaat qilish uchun ref
+  const carouselRef = useRef(null);
 
-  // Helper function to get day name in Uzbek (based on your image)
+  // Ekranning joriy kengligini saqlash uchun holat
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // --- Ekranning kengligini kuzatish uchun useEffect ---
+  useEffect(() => {
+    // Ekran o'lchami o'zgarganda ishga tushadigan funksiya
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // 'resize' hodisasini tinglashni boshlash
+    window.addEventListener("resize", handleResize);
+
+    // Komponent o'chirilganda 'resize' tinglashni to'xtatish
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); 
+
+  
+  useEffect(() => {
+    if (windowWidth < 640) {
+
+      setDatesToShow(3); // Minimum 3 ta sana
+    } else if (windowWidth >= 640 && windowWidth < 768) {
+      
+      setDatesToShow(3);
+    } else if (windowWidth >= 768 && windowWidth < 900) {
+      setDatesToShow(5);
+    }else{
+      setDatesToShow(7); 
+    }
+  }, [windowWidth]); 
+
+  
+
+ 
   const getDayNameUzbek = (date) => {
     const days = [
       "Yakshanba",
@@ -18,7 +58,7 @@ const DateCarousel = () => {
     return days[date.getDay()];
   };
 
-  // Helper function to get month name in Uzbek (based on your image)
+  // Oy nomini o'zbek tilida qaytaradi
   const getMonthNameUzbek = (date) => {
     const months = [
       "Yanvar",
@@ -37,13 +77,13 @@ const DateCarousel = () => {
     return months[date.getMonth()];
   };
 
-  // Function to generate an array of dates to display
-  // Endi bu funksiya faqat 7 ta kunni generatsiya qiladi.
-  // Responsive ko'rinish uchun Tailwind CSS dan foydalanamiz.
-  const getDatesToDisplay = (startDate) => {
+  // Joriy sanadan boshlab ko'rsatiladigan sanalar massivini qaytaradi
+  const getDatesToDisplay = (startDate, numDates) => {
     const dates = [];
-    for (let i = -3; i <= 3; i++) {
-      // Always generate 7 days
+    // Joriy sanadan chapga va o'ngga qancha kun borish kerakligini hisoblash
+    const offset = Math.floor(numDates / 2);
+
+    for (let i = -offset; i <= offset; i++) {
       const date = new Date(startDate);
       date.setDate(startDate.getDate() + i);
       dates.push(date);
@@ -51,30 +91,61 @@ const DateCarousel = () => {
     return dates;
   };
 
-  const datesToDisplay = getDatesToDisplay(currentDate);
+  // Ko'rsatiladigan sanalar massivini tayyorlash
+  const datesToDisplay = getDatesToDisplay(currentDate, datesToShow);
 
+  // --- Navigatsiya funksiyalari ---
+
+  // Oldingi kunga o'tish
   const handlePrevDay = () => {
     const newDate = new Date(currentDate);
     newDate.setDate(currentDate.getDate() - 1);
     setCurrentDate(newDate);
   };
 
+  // Keyingi kunga o'tish
   const handleNextDay = () => {
     const newDate = new Date(currentDate);
     newDate.setDate(currentDate.getDate() + 1);
     setCurrentDate(newDate);
   };
 
+  // --- Tanlangan sanani markazga joylashtirish effekti ---
+  useEffect(() => {
+    if (carouselRef.current) {
+      // DOM yangilanishini kutish uchun setTimeout ishlatiladi.
+      // Bu, datesToShow o'zgarganda elementlarning to'g'ri o'lchamlari mavjudligini ta'minlaydi.
+      setTimeout(() => {
+        const selectedElement = carouselRef.current.querySelector(
+          ".date-item.is-selected"
+        );
+        if (selectedElement) {
+          const scrollContainer = carouselRef.current;
+          // Tanlangan elementni markazga joylashtirish uchun skroll ofsetini hisoblash
+          const scrollOffset =
+            selectedElement.offsetLeft -
+            scrollContainer.offsetWidth / 2 +
+            selectedElement.offsetWidth / 2;
+          // Yumshoq skroll effekti bilan joylashtirish
+          scrollContainer.scrollTo({
+            left: scrollOffset,
+            behavior: "smooth",
+          });
+        }
+      }, 0); // Kichik bir kechikish
+    }
+  }, [currentDate, datesToShow]); // currentDate VA datesToShow o'zgarganda ishlaydi
+
   return (
-    <div className="flex items-center justify-center p-2 sm:p-4 bg-white rounded-lg shadow-md max-w-full overflow-hidden">
-      {/* Left Arrow */}
+    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-2 sm:gap-4 bg-white shadow-md rounded-lg p-2 sm:p-4 max-w-full mx-auto overflow-hidden">
+      {/* Chap o'q (oldingi kunga o'tish tugmasi) */}
       <button
         onClick={handlePrevDay}
-        className="p-1 sm:p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2 sm:mr-4 flex-shrink-0"
+        className="flex-shrink-0 p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
         aria-label="Previous Day"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600"
+          className="w-5 h-5 text-gray-600"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -85,63 +156,69 @@ const DateCarousel = () => {
             strokeLinejoin="round"
             strokeWidth="2"
             d="M15 19l-7-7 7-7"
-          ></path>
+          />
         </svg>
       </button>
 
-      {/* Dates Container */}
-      <div className="flex justify-center space-x-1 sm:space-x-2 md:space-x-4 flex-grow overflow-hidden">
+      {/* Skrollanadigan sanalar ro'yxati (Grid konteyneri) */}
+      <div
+        ref={carouselRef}
+        // Tailwind Grid klaslari datesToShow holatiga qarab dinamik o'rnatiladi
+        className={`grid overflow-x-hidden scrollbar-hide justify-items-center ${
+          datesToShow === 3
+            ? "grid-cols-3" // 3 ta ustun mobil uchun
+            : datesToShow === 5
+            ? "grid-cols-5" // 5 ta ustun o'rta ekranlar uchun
+            : "grid-cols-7" // 7 ta ustun katta ekranlar uchun
+        }`}
+        // Har bir ustunni teng kenglikda qilish uchun inline style
+        style={{ gridAutoColumns: "minmax(0, 1fr)" }}
+      >
         {datesToDisplay.map((date, index) => {
+          // Joriy sanani tanlangan sana bilan solishtirish
           const isSelected = date.toDateString() === currentDate.toDateString();
           return (
             <div
-              key={date.toISOString()}
-              className={`flex flex-col items-center p-1 sm:p-2 rounded-lg cursor-pointer transition-all duration-300 flex-shrink-0
+              key={index}
+              onClick={() => setCurrentDate(date)} // Sanani bosganda uni tanlangan qilish
+              className={`
+                date-item
+                min-w-[65px] sm:min-w-[80px] // Elementlarning minimal kengligi
+                text-center
+                rounded-lg
+                cursor-pointer
+                p-2
+                transition-all
+                duration-200
                 ${
                   isSelected
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-800 hover:bg-gray-50"
+                    ? "bg-blue-100 text-blue-600 font-bold is-selected shadow-inner" // Tanlangan sana stili
+                    : "hover:bg-gray-100 text-gray-700" // Oddiy sana stili
                 }
-                ${
-                  index === 0 || index === 6 ? "hidden sm:flex" : ""
-                }  // Eng chetdagi elementlar sm ekranda ko'rinadi
-                ${
-                  index === 1 || index === 5 ? "hidden md:flex" : ""
-                }  // Keyingi chetdagi elementlar md ekranda ko'rinadi
               `}
-              onClick={() => setCurrentDate(date)} // Select this date
-              style={{ minWidth: "70px" }} // Har bir kun elementi uchun minimal kenglik berish (kerak bo'lsa)
             >
-              <span className="text-xs sm:text-sm font-semibold mb-0.5 sm:mb-1">
-                {getMonthNameUzbek(date)}
-              </span>
-              <span
-                className={`text-2xl sm:text-3xl font-bold ${
-                  isSelected ? "text-blue-600" : "text-gray-800"
-                }`}
-              >
-                {date.getDate()}
-              </span>
-              <span
-                className={`text-xs ${
-                  isSelected ? "text-blue-500" : "text-gray-500"
-                }`}
-              >
-                {getDayNameUzbek(date)}
-              </span>
+              <div className="text-xs sm:text-sm font-semibold">
+                {getMonthNameUzbek(date)} {/* Oy nomi */}
+              </div>
+              <div className="text-xl sm:text-2xl font-bold">
+                {date.getDate()} {/* Kun raqami */}
+              </div>
+              <div className="text-xs sm:text-sm text-gray-500">
+                {getDayNameUzbek(date)} {/* Kun nomi */}
+              </div>
             </div>
           );
         })}
       </div>
 
-      {/* Right Arrow */}
+      {/* O'ng o'q (keyingi kunga o'tish tugmasi) */}
       <button
         onClick={handleNextDay}
-        className="p-1 sm:p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2 sm:ml-4 flex-shrink-0"
+        className="flex-shrink-0 p-2 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
         aria-label="Next Day"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600"
+          className="w-5 h-5 text-gray-600"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -152,7 +229,7 @@ const DateCarousel = () => {
             strokeLinejoin="round"
             strokeWidth="2"
             d="M9 5l7 7-7 7"
-          ></path>
+          />
         </svg>
       </button>
     </div>
