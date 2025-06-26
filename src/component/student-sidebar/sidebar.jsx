@@ -5,7 +5,7 @@ import {
   UserIcon,
   EnvelopeIcon,
   GlobeAltIcon,
-  Cog6ToothIcon,
+  CogIcon,
 } from "@heroicons/react/24/outline"; 
 
 const Sidebar = () => {
@@ -35,7 +35,7 @@ const Sidebar = () => {
       current: false,
       notification: 0,
     },
-    { name: "Tizim", icon: Cog6ToothIcon, current: false, notification: 0 },
+    { name: "Tizim", icon: CogIcon, current: false, notification: 0 },
   ];
 
   const user = {
