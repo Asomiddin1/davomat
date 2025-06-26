@@ -117,7 +117,7 @@ const Sidebar = () => {
         </nav>
 
         {/* Logout Button */}
-        <div className="mt-auto px-2 py-4">
+        <div className="mt-auto px-2 py-4 mb-10">
           <Link
             to={logoutItem.link}
             className="bg-red-600 text-white hover:bg-red-700 group flex items-center px-4 py-2 text-sm font-medium rounded-md relative"
@@ -126,6 +126,7 @@ const Sidebar = () => {
             {logoutItem.name}
           </Link>
         </div>
+
       </div>
     </div>
   );
