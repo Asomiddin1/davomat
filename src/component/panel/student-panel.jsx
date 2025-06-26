@@ -12,11 +12,11 @@ const StudentPanel = () => {
   }
 
   return (
-    <div className="flex w-full h-[100vh] overflow-y-hidden ">
+    <div className="flex w-full sm:h-[100vh] overflow-y-hidden ">
       <div className=" sm:flex  hidden">
         <Sidebar />
       </div>
-      <div className="bg-[#f0f2f5] w-full px-4  py-3  overflow-y-auto">
+      <div className="bg-[#f0f2f5] w-full px-4  py-3  sm:overflow-y-auto">
         <div className="bg-white shadow-md py-3 px-6 rounded-2xl flex justify-between items-center">
           <h1 className="text-[22px] font-extralight tracking-normal">
             Dars Jadvali
