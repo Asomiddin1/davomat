@@ -3,6 +3,7 @@ import {
   CalendarDaysIcon,
   PencilSquareIcon,
   EnvelopeIcon,
+  UserIcon,
   ClockIcon,
   ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
@@ -17,6 +18,12 @@ const Sidebar = () => {
       icon: CalendarDaysIcon,
       notification: 0,
       link: "/",
+    },
+    {
+      name: "Talaba malumotlari",
+      icon: UserIcon,
+      notification: 0,
+      link: "/student-info",
     },
     {
       name: "Rejalashtirish",
