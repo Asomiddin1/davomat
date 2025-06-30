@@ -43,8 +43,8 @@ const Daily = () => {
 
       {/* Barcha darslarni o'rab turadigan asosiy konteyner */}
       <div className="bg-white shadow-md p-4 sm:p-6 rounded-2xl">
-        <h2 className="text-base sm:text-lg md:text-xl font-semibold flex justify-between items-center flex-wrap gap-2 mb-4">
-          <span>Kunlik Dars Jadvali</span>
+        <h2 className="text-base sm:text-lg md:text-xl font-semibold flex justify-between items-center flex-wrap gap-2 mb-4 ">
+          <span className="text-[black]">Kunlik Dars Jadvali</span>
           <span className="text-sm sm:text-base text-gray-600">25 - iyun</span>
         </h2>
 

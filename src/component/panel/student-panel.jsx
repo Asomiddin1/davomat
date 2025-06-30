@@ -28,7 +28,7 @@ const StudentPanel = () => {
           <div className="flex space-x-2 bg-gray-500 rounded-lg px-2 py-2">
             <button
               onClick={onToggleDaily}
-              className={` py-1 px-4 rounded cursor-pointer font-extralight ${
+              className={` py-1 px-4 rounded cursor-pointer font-extralight text-[black] ${
                 dailyData ? "bg-gray-50" : "bg-gray-400"
               }`}
             >
@@ -36,7 +36,7 @@ const StudentPanel = () => {
             </button>
             <button
               onClick={onToggleDaily}
-              className={` py-1 px-4 rounded cursor-pointer font-extralight ${
+              className={` py-1 px-4 rounded cursor-pointer font-extralight text-[black] ${
                 dailyData ? "bg-gray-400" : "bg-gray-50"
               }`}
             >
@@ -45,7 +45,9 @@ const StudentPanel = () => {
           </div>
         </div>
 
-        <div className="mt-3 mb-10">{dailyData ? <Daily /> : <WeeklySchedule />}</div>
+        <div className="mt-3 mb-10">
+          {dailyData ? <Daily /> : <WeeklySchedule />}
+        </div>
       </div>
     </div>
   );

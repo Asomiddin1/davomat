@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login_bg">
+    <div className="login_bg text-[black]">
       <div className="login-container">
         <h2 style={{ color: "#4a63f3" }}>Dars jadvali</h2>
 
