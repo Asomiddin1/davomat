@@ -5,14 +5,14 @@ import Sidebar from "../../component/student-sidebar/sidebar";
 const StudentInfo = () => {
   return (
     <div className="w-full min-h-screen bg-gray-50 dark:bg-gray-900 overflow-y-hidden">
-      <div className="sm:hidden">
+      <div className="sm:hidden mb-12">
         <MobileNavbar />
       </div>
       <div className="flex overflow-hidden h-screen">
         <div className="hidden sm:block ">
           <Sidebar />
         </div>
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8  overflow-y-hidden sm:overflow-y-auto">
           {" "}
           {/* Added flex-1 and overflow-y-auto */}
           {/* Main content wrapper with consistent padding */}

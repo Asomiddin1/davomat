@@ -137,7 +137,7 @@ const Plans = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-50 dark:bg-gray-900 overflow-y-hidden">
-      <div className="sm:hidden">
+      <div className="sm:hidden mb-12">
         <MobileNavbar />
       </div>
 
