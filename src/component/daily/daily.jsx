@@ -3,32 +3,32 @@ import DateCarousel from "../carousel/carousel"; // Assuming this component exis
 
 const scheduleData = [
   {
-    startTime: "08:30",
-    endTime: "09:50",
-    title: "Web dasturlashga kirish",
-    type: "Amaliyot",
-    room: "A 450",
-    teacher: "Yusupov.B.K",
+    startTime: "09:00",
+    endTime: "10:15",
+    title: "Yapon tili",
+    type: "Ma'ruza",
+    room: "203",
+    teacher: "Naoki Date",
     color: "bg-gray-500", // Matches the first block's color in the image
     borderColor: "border-gray-500", // Corresponding border color
   },
   {
-    startTime: "10:00",
-    endTime: "11:20",
-    title: "Ma'lumotlar tuzilmasi va algoritmlar",
-    type: "Laboratoriya",
-    room: "A 320",
-    teacher: "Qalandarov.A.B",
+    startTime: "10:20",
+    endTime: "11:40",
+    title: "Yapon tili",
+    type: "Maruza",
+    room: "203",
+    teacher: "Naoki Date",
     color: "bg-green-500", // Matches the second block's color in the image
     borderColor: "border-green-500", // Corresponding border color
   },
   {
-    startTime: "13:30",
-    endTime: "14:50",
-    title: "Oliy matematika",
+    startTime: "13:50",
+    endTime: "15:05",
+    title: "Php dasturlash tili",
     type: "Ma'ruza",
-    room: "A 300",
-    teacher: "Azimov.D.L",
+    room: "304",
+    teacher: "Erkaboy Qadamboyev",
     color: "bg-orange-500", // Matches the third block's color in the image
     borderColor: "border-orange-500", // Corresponding border color
   },
@@ -71,7 +71,7 @@ const Daily = () => {
               <p className="text-gray-600 text-sm mb-2">{item.type}</p>
               <div className="flex justify-between items-end">
                 <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">
-                  {item.room}
+                  Xona - {item.room}
                 </span>
                 <span className="text-gray-500 text-sm">{item.teacher}</span>
               </div>

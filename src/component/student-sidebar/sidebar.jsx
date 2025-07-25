@@ -64,8 +64,13 @@ const Sidebar = () => {
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-200">
           <Link to="/" className="flex items-center space-x-2">
+            {/* <img
+              className="w-10"
+              src="https://portfolio.jdu.uz/assets/logo-CTSg48Ew.png"
+              alt=""
+            /> */}
             <h1 className="text-xl font-bold text-blue-600">
-              Jdu{" "}
+              JDU{" "}
               <span className="text-blue-600 text-lg font-normal">Student</span>
             </h1>
           </Link>
@@ -133,7 +138,6 @@ const Sidebar = () => {
             {logoutItem.name}
           </Link>
         </div>
-
       </div>
     </div>
   );
