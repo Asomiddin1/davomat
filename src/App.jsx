@@ -4,25 +4,96 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
 import RootLayout from "./layout/rootLayout";
 import Login from "./page/login/login";
-import Homapage from "./page/home/homapage";
-import Pomidor from "./page/pomidor/pomidor";
-import Plans from "./page/plans/plans";
-import Message from "./page/message/message";
-import StudentInfo from "./page/student-info/st-info";
+import Pomidor from "./panel/Student/pomidor/pomidor";
+import Plans from "./panel/Student/plans/plans";
+import Message from "./panel/Student/message/message";
+import StudentInfo from "./panel/Student/student-info/st-info";
+import Dashboard from "./panel/Student/Dashboard";
+import TeacherDashboard from "./panel/teacher/teacher-dashboard";
+import AdminDashboard from "./panel/admin/admin-dashboard";
+import ParentDashboard from "./panel/parent/parent-dashboard";
 
+// Role tekshiruvchi component
+function PrivateRoute({ children, allowedRoles }) {
+  const role = localStorage.getItem("role"); // login paytida saqlanadi
+  if (!role) return <Navigate to="/login" replace />;
+  if (!allowedRoles.includes(role)) return <Navigate to="/login" replace />;
+  return children;
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Homapage />} />
+      {/* Barchaga ochiq sahifalar */}
+      <Route index element={<Dashboard />} />
       <Route path="login" element={<Login />} />
-      <Route path="pomidor" element={<Pomidor />} />
-      <Route path="plans" element={<Plans />} />
-      <Route path="message" element={<Message />} />
-      <Route path="student-info" element={<StudentInfo />} />
+
+      {/* Faqat admin */}
+      <Route
+        path="admin-dashboard"
+        element={
+          <PrivateRoute allowedRoles={["admin"]}>
+            <AdminDashboard />
+          </PrivateRoute>
+        }
+      />
+
+      {/* Faqat student */}
+      <Route
+        path="message"
+        element={
+          <PrivateRoute allowedRoles={["student"]}>
+            <Message />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="student-info"
+        element={
+          <PrivateRoute allowedRoles={["student"]}>
+            <StudentInfo />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="plans"
+        element={
+          <PrivateRoute allowedRoles={["student"]}>
+            <Plans />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="pomidor"
+        element={
+          <PrivateRoute allowedRoles={["student"]}>
+            <Pomidor />
+          </PrivateRoute>
+        }
+      />
+
+      {/* Faqat teacher */}
+      <Route
+        path="tacher-dashboard"
+        element={
+          <PrivateRoute allowedRoles={["teacher"]}>
+            <TeacherDashboard />
+          </PrivateRoute>
+        }
+      />
+      {/* Faqat Parent */}
+      <Route
+        path="parent-dashboard"
+        element={
+          <PrivateRoute allowedRoles={["parent"]}>
+            <ParentDashboard />
+          </PrivateRoute>
+        }
+      />
     </Route>
   )
 );

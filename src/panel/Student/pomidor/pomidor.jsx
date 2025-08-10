@@ -1,7 +1,7 @@
 // src/pages/Pomidor/index.jsx
 import React, { useEffect, useState } from "react";
-import MobileNavbar from "../../component/navbar/mobile-navbar";
-import Sidebar from "../../component/student-sidebar/sidebar";
+import MobileNavbar from "../navbar/mobile-navbar";
+import Sidebar from "../student-sidebar/sidebar";
 import PomidoroTimer from "./pomidor-timer"; // PomidoroTimer komponentini import qilish
 
 const Pomidor = () => {

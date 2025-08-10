@@ -7,15 +7,29 @@ const Login = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate(); // ✅ to‘g‘rilangan joy
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (userId && password) {
-      localStorage.setItem("user", JSON.stringify({ userId, role }));
-      navigate("/"); // ✅ foydalanuvchini bosh sahifaga yo‘naltirish
+    
+  if (userId && password) {
+    // Agar admin bo'lsa
+    if (userId.toLowerCase() === "admin") {
+      localStorage.setItem("role", "admin");
+      localStorage.setItem("user", JSON.stringify({ userId, role: "admin" }));
+      navigate("/admin-dashboard");
+      return; // boshqa shartlarga o'tmaslik uchun
     }
+
+    // Oddiy foydalanuvchilar uchun
+    localStorage.setItem("role", role);
+    localStorage.setItem("user", JSON.stringify({ userId, role }));
+
+    if (role === "teacher") navigate("/teacher-dashboard");
+    else if (role === "student") navigate("/");
+    else if (role === "parent") navigate("/parent-dashboard");
+    else navigate("/");
+  }
   };
 
   return (
@@ -25,18 +39,21 @@ const Login = () => {
 
         <div className="role-tabs">
           <button
+            type="button"
             className={role === "teacher" ? "active" : ""}
             onClick={() => setRole("teacher")}
           >
             Ustoz
           </button>
           <button
+            type="button"
             className={role === "student" ? "active" : ""}
             onClick={() => setRole("student")}
           >
             Talaba
           </button>
           <button
+            type="button"
             className={role === "parent" ? "active" : ""}
             onClick={() => setRole("parent")}
           >

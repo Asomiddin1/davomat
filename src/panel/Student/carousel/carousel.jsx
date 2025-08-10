@@ -25,26 +25,20 @@ const DateCarousel = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); 
+  }, []);
 
-  
   useEffect(() => {
     if (windowWidth < 640) {
-
       setDatesToShow(3); // Minimum 3 ta sana
     } else if (windowWidth >= 640 && windowWidth < 768) {
-      
       setDatesToShow(3);
     } else if (windowWidth >= 768 && windowWidth < 900) {
       setDatesToShow(5);
-    }else{
-      setDatesToShow(7); 
+    } else {
+      setDatesToShow(7);
     }
-  }, [windowWidth]); 
+  }, [windowWidth]);
 
-  
-
- 
   const getDayNameUzbek = (date) => {
     const days = [
       "Yakshanba",
@@ -175,8 +169,27 @@ const DateCarousel = () => {
         style={{ gridAutoColumns: "minmax(0, 1fr)" }}
       >
         {datesToDisplay.map((date, index) => {
-          // Joriy sanani tanlangan sana bilan solishtirish
+          const today = new Date(); // Har bir renderda bugungi kunni olish
+
+          // Sana hozirgi tanlangan sana bilan bir xilmi?
           const isSelected = date.toDateString() === currentDate.toDateString();
+          // Sana bugungi kun bilan bir xilmi?
+          const isToday = date.toDateString() === today.toDateString();
+
+          let itemClasses = "";
+
+          if (isSelected) {
+            // Tanlangan kun
+            itemClasses =
+              "bg-blue-100 text-blue-600  font-bold is-selected shadow-md"; // To'q ko'k fon, oq matn
+          } else if (isToday) {
+            // Bugungi kun, lekin tanlanmagan
+            itemClasses = "bg-green-100 text-green-700 font-semibold shadow-sm"; // Yashil fon, yashil matn
+          } else {
+            // Boshqa kunlar
+            itemClasses = "hover:bg-gray-100 text-gray-700"; // Oddiy stil
+          }
+
           return (
             <div
               key={index}
@@ -190,11 +203,7 @@ const DateCarousel = () => {
                 p-2
                 transition-all
                 duration-200
-                ${
-                  isSelected
-                    ? "bg-blue-100 text-blue-600 font-bold is-selected shadow-inner" // Tanlangan sana stili
-                    : "hover:bg-gray-100 text-gray-700" // Oddiy sana stili
-                }
+                ${itemClasses}
               `}
             >
               <div className="text-xs sm:text-sm font-semibold">
@@ -203,7 +212,7 @@ const DateCarousel = () => {
               <div className="text-xl sm:text-2xl font-bold">
                 {date.getDate()} {/* Kun raqami */}
               </div>
-              <div className="text-xs sm:text-sm text-gray-500">
+              <div className="text-xs sm:text-sm ">
                 {getDayNameUzbek(date)} {/* Kun nomi */}
               </div>
             </div>

@@ -1,16 +1,15 @@
-
-import Daily from "../daily/daily";
+import Daily from "./daily/daily";
 import { useState } from "react";
-import Sidebar from "../student-sidebar/sidebar";
-import WeeklySchedule from "../weakly/weakly";
-import MobileNavbar from "../navbar/mobile-navbar";
+import Sidebar from "./student-sidebar/sidebar";
+import WeeklySchedule from "./weakly/weakly";
+import MobileNavbar from "./navbar/mobile-navbar";
 
-const StudentPanel = () => {
+const Dashboard = () => {
   const [dailyData, setDailyData] = useState(true);
 
   const onToggleDaily = () => {
-    setDailyData(prev => !prev);
-  }
+    setDailyData((prev) => !prev);
+  };
 
   return (
     <div className="flex w-full sm:h-[100vh] overflow-y-hidden ">
@@ -52,6 +51,6 @@ const StudentPanel = () => {
       </div>
     </div>
   );
-}
+};
 
-export default StudentPanel;
+export default Dashboard;

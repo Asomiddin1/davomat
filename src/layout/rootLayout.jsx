@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import MobileNavbar from '../component/navbar/mobile-navbar'
+import MobileNavbar from '../panel/Student/navbar/mobile-navbar'
 
 
 const RootLayout = () => {

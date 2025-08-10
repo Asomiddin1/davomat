@@ -1,6 +1,6 @@
 
-import MobileNavbar from "../../component/navbar/mobile-navbar";
-import Sidebar from "../../component/student-sidebar/sidebar";
+import MobileNavbar from "../navbar/mobile-navbar";
+import Sidebar from "../student-sidebar/sidebar";
 
 const StudentInfo = () => {
   return (
