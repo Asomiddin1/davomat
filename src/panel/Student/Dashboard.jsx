@@ -1,5 +1,5 @@
 import Daily from "./daily/daily";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./student-sidebar/sidebar";
 import WeeklySchedule from "./weakly/weakly";
 import MobileNavbar from "./navbar/mobile-navbar";
@@ -11,6 +11,9 @@ const Dashboard = () => {
     setDailyData((prev) => !prev);
   };
 
+ useEffect(() => {
+   
+    }, []);
   return (
     <div className="flex w-full sm:h-[100vh] overflow-y-hidden ">
       <div className="  sm:hidden ">

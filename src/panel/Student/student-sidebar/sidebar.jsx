@@ -58,6 +58,9 @@ const Sidebar = () => {
       "https://www.holmesglen.edu.au/content/holmesglen/holmesglen/au/en/current-students/new-students/_jcr_content/root/container/container/container_copy_copy__911007940/container_1533697349/container_copy/teaser.coreimg.85.1024.jpeg/1699931099815/gettyimages-1438185814--660-x-495px.jpeg",
   };
 
+  const removeRole =()=>{
+   localStorage.clear();
+  }
   return (
     <div className="flex h-[100vh] bg-white shadow-xl">
       <div className="flex flex-col w-64 border-r border-gray-200">
@@ -134,7 +137,7 @@ const Sidebar = () => {
             to={logoutItem.link}
             className="bg-red-600 text-white hover:bg-red-700 group flex items-center px-4 py-2 text-sm font-medium rounded-md relative"
           >
-            <logoutItem.icon className="mr-3 flex-shrink-0 h-6 w-6 text-white" />
+            <logoutItem.icon onClick={removeRole} className="mr-3 flex-shrink-0 h-6 w-6 text-white" />
             {logoutItem.name}
           </Link>
         </div>

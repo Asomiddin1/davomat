@@ -29,7 +29,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       {/* Barchaga ochiq sahifalar */}
-      <Route index element={<Dashboard />} />
       <Route path="login" element={<Login />} />
 
       {/* Faqat admin */}
@@ -43,6 +42,14 @@ const router = createBrowserRouter(
       />
 
       {/* Faqat student */}
+      <Route
+        index
+        element={
+          <PrivateRoute allowedRoles={["student"]}>
+           <Dashboard />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="message"
         element={
