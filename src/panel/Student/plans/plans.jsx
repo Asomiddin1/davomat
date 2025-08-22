@@ -136,7 +136,7 @@ const Plans = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 dark:bg-gray-900 overflow-y-hidden">
+    <div className="w-full min-h-screen bg-[#f0f2f5] dark:bg-gray-900 overflow-y-hidden">
       <div className="sm:hidden mb-12">
         <MobileNavbar />
       </div>
@@ -146,10 +146,10 @@ const Plans = () => {
           <Sidebar />
         </div>
 
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 sm:overflow-y-auto overflow-y-hidden">
           <div className="max-w-6xl mx-auto space-y-8 pb-8">
             <div className="max-w-4xl mx-auto">
-              <div className="flex justify-between items-center shadow py-4 px-4 rounded-2xl">
+              <div className="flex justify-between items-center shadow py-4 px-4 rounded-2xl bg-white">
                 <h1 className="text-2xl font-bold">Rejalar</h1>
                 <button
                   onClick={() => setIsModalOpen(true)}

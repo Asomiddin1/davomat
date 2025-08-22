@@ -25,7 +25,7 @@ const Login = () => {
     localStorage.setItem("role", role);
     localStorage.setItem("user", JSON.stringify({ userId, role }));
 
-    if (role === "teacher") navigate("/teacher-dashboard");
+    if (role === "teacher") navigate("/tacher-dashboard");
     else if (role === "student") navigate("/");
     else if (role === "parent") navigate("/parent-dashboard");
     else navigate("/");

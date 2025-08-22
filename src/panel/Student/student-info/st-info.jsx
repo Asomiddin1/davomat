@@ -1,31 +1,27 @@
-
 import MobileNavbar from "../navbar/mobile-navbar";
 import Sidebar from "../student-sidebar/sidebar";
 
 const StudentInfo = () => {
   return (
-    <div className="w-full min-h-screen bg-gray-50 dark:bg-gray-900 overflow-y-hidden">
+    <div className="w-full h-screen bg-[#f0f2f5] dark:bg-gray-900 overflow-y-hidden">
       <div className="sm:hidden mb-12">
         <MobileNavbar />
       </div>
-      <div className="flex overflow-hidden h-screen">
-        <div className="hidden sm:block ">
+      <div className="flex h-screen overflow-hidden">
+        <div className="hidden sm:block">
           <Sidebar />
         </div>
-        <div className="flex-1 p-4 sm:p-6 lg:p-8  overflow-y-hidden sm:overflow-y-auto">
+        <div className="flex-1 pt-10 px-4 mb-20 overflow-y-auto">
           {" "}
-          {/* Added flex-1 and overflow-y-auto */}
-          {/* Main content wrapper with consistent padding */}
+          {/* Faqat shu qatorda 'overflow-y-auto' bo'lishi kerak */}
           <div className="max-w-4xl mx-auto space-y-6">
             {" "}
-            {/* Added space-y for consistent vertical spacing */}
-            {/* Profil qismi */}
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 flex flex-col sm:flex-row items-center sm:items-start gap-6 border border-gray-200 dark:border-gray-700">
-              <div className="avatar mask mask-squircle w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
+              <div className="avatar mask mask-mask-squircle w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
                 <img
                   src="https://img.daisyui.com/images/profile/demo/distracted1@192.webp"
                   alt="Profile"
-                  className="rounded-full object-cover w-full h-full"
+                  className=" rounded-full object-cover w-full h-full"
                 />
               </div>
               <div className="text-center sm:text-left">

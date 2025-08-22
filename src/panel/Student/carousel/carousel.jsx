@@ -196,7 +196,7 @@ const DateCarousel = () => {
               onClick={() => setCurrentDate(date)} // Sanani bosganda uni tanlangan qilish
               className={`
                 date-item
-                min-w-[65px] sm:min-w-[80px] // Elementlarning minimal kengligi
+                min-w-[65px] sm:min-w-[80px]
                 text-center
                 rounded-lg
                 cursor-pointer
@@ -209,7 +209,7 @@ const DateCarousel = () => {
               <div className="text-xs sm:text-sm font-semibold">
                 {getMonthNameUzbek(date)} {/* Oy nomi */}
               </div>
-              <div className="text-xl sm:text-2xl font-bold">
+              <div className="text-xl sm:text-xl font-bold">
                 {date.getDate()} {/* Kun raqami */}
               </div>
               <div className="text-xs sm:text-sm ">
