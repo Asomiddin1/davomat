@@ -16,6 +16,7 @@ import Dashboard from "./panel/Student/Dashboard";
 import TeacherDashboard from "./panel/teacher/teacher-dashboard";
 import AdminDashboard from "./panel/admin/admin-dashboard";
 import ParentDashboard from "./panel/parent/parent-dashboard";
+import ParentSettings from "./panel/Parent/settings/p-settings";
 
 // Role tekshiruvchi component
 function PrivateRoute({ children, allowedRoles }) {
@@ -46,7 +47,7 @@ const router = createBrowserRouter(
         index
         element={
           <PrivateRoute allowedRoles={["student"]}>
-           <Dashboard />
+            <Dashboard />
           </PrivateRoute>
         }
       />
@@ -98,6 +99,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute allowedRoles={["parent"]}>
             <ParentDashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="settings"
+        element={
+          <PrivateRoute allowedRoles={["parent"]}>
+            <ParentSettings />
           </PrivateRoute>
         }
       />

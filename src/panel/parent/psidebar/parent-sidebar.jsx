@@ -1,47 +1,26 @@
-import React from "react";
+
 import {
-  CalendarDaysIcon,
-  PencilSquareIcon,
-  EnvelopeIcon,
-  UserIcon,
-  ClockIcon,
+  AcademicCapIcon,
+  CogIcon,
   ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 
-const Sidebar = () => {
+const ParentSidebar = () => {
   const location = useLocation(); // bu orqali hozirgi url ni olamiz
 
   const menuItems = [
     {
-      name: "Dars jadvali",
-      icon: CalendarDaysIcon,
-      notification: 0,
-      link: "/",
-    },
-    {
       name: "Talaba malumotlari",
-      icon: UserIcon,
+      icon: AcademicCapIcon,
       notification: 0,
-      link: "/student-info",
+      link: "/parent-dashboard",
     },
     {
-      name: "Rejalashtirish",
-      icon: PencilSquareIcon,
+      name: "Sozlamalar",
+      icon: CogIcon,
       notification: 0,
-      link: "/plans",
-    },
-    {
-      name: "Xabarlar",
-      icon: EnvelopeIcon,
-      notification: 1,
-      link: "/message",
-    },
-    {
-      name: "Pomidor taymer",
-      icon: ClockIcon,
-      notification: 0,
-      link: "/pomidor",
+      link: "/settings",
     },
   ];
 
@@ -58,23 +37,23 @@ const Sidebar = () => {
       "https://www.holmesglen.edu.au/content/holmesglen/holmesglen/au/en/current-students/new-students/_jcr_content/root/container/container/container_copy_copy__911007940/container_1533697349/container_copy/teaser.coreimg.85.1024.jpeg/1699931099815/gettyimages-1438185814--660-x-495px.jpeg",
   };
 
-  const removeRole =()=>{
-   localStorage.clear();
-  }
+  const removeRole = () => {
+    localStorage.clear();
+  };
   return (
     <div className="flex h-[100vh] bg-white shadow-xl">
       <div className="flex flex-col w-64 border-r border-gray-200">
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-200">
-          <Link to="/" className="flex items-center space-x-2">
-            <img
+          <Link to="/parent-dashboard" className="flex items-center space-x-2">
+            {/* <img
               className="w-10"
               src="https://portfolio.jdu.uz/assets/logo-CTSg48Ew.png"
               alt=""
-            />
+            /> */}
             <h1 className="text-xl font-bold text-blue-600">
               JDU{" "}
-              <span className="text-blue-600 text-lg font-normal">Student</span>
+              <span className="text-blue-600 text-lg font-normal">Parents</span>
             </h1>
           </Link>
         </div>
@@ -137,7 +116,10 @@ const Sidebar = () => {
             to={logoutItem.link}
             className="bg-red-600 text-white hover:bg-red-700 group flex items-center px-4 py-2 text-sm font-medium rounded-md relative"
           >
-            <logoutItem.icon onClick={removeRole} className="mr-3 flex-shrink-0 h-6 w-6 text-white" />
+            <logoutItem.icon
+              onClick={removeRole}
+              className="mr-3 flex-shrink-0 h-6 w-6 text-white"
+            />
             {logoutItem.name}
           </Link>
         </div>
@@ -146,4 +128,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default ParentSidebar;
