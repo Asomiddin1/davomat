@@ -44,7 +44,7 @@ const StudentInfo = () => {
       </div>
 
       {/* Scroll qiladigan content */}
-      <div className="flex-1 h-screen overflow-y-auto p-4 sm:p-6">
+      <div className="flex-1 h-screen overflow-y-auto p-4 sm:p-6 mt-15 sm:mt-0 ">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Profil */}
           <div className="bg-white shadow-lg p-4 sm:p-6 rounded-2xl flex items-center gap-4 hover:shadow-xl transition">

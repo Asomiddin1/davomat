@@ -23,7 +23,7 @@ const Dashboard = () => {
         <Sidebar />
       </div>
 
-      <div className="bg-[#f0f2f5] w-full px-4  py-3  sm:overflow-y-auto  sm:pt-5 pt-20">
+      <div className="custom_bg w-full px-4  py-3  sm:overflow-y-auto  sm:pt-5 pt-20">
         <div className="bg-white shadow-md py-3 px-6 rounded-2xl flex justify-between items-center">
           <h1 className="text-[22px] font-extralight tracking-normal text-[black]">
             Dars Jadvali

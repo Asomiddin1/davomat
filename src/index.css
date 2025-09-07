@@ -11,3 +11,7 @@
 .subject-bg{
   background-color: rgb(219 234 254 / 1);
 }
+
+.custom_bg{
+  background: linear-gradient(135deg, #e3eafc, #cfd9f9);
+}
