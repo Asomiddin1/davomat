@@ -40,7 +40,7 @@ const Pomidor = () => {
 
   // Agar pop-up emas, asosiy sahifa bo'lsa, hamma narsani render qilamiz
   return (
-    <div className="w-full h-screen bg-[#f0f2f5]">
+    <div className="w-full h-screen custom_bg">
       <div className="sm:hidden">
         <MobileNavbar />
       </div>

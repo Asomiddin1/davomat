@@ -77,7 +77,7 @@ const Sidebar = () => {
               <span className="text-blue-600 text-lg font-normal">Student</span>
             </h1>
           </Link>
-        </div>
+        </div>  
 
         {/* User Profile */}
         <div className="flex items-center px-6 py-4 border-b border-gray-200">
@@ -104,7 +104,7 @@ const Sidebar = () => {
                   ${
                     isActive
                       ? "bg-blue-500 text-white"
-                      : "text-gray-700 bg-gray-100"
+                      : "text-gray-700 bg-gray-200"
                   }
                   group flex items-center px-4 py-2 text-sm font-medium rounded-md relative mb-2
                 `}

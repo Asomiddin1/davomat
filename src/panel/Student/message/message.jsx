@@ -44,7 +44,7 @@ const Message = () => {
   ];
 
   return (
-    <div className="w-full h-screen bg-[#f0f2f5] flex flex-col sm:flex-row">
+    <div className="w-full h-screen custom_bg flex flex-col sm:flex-row">
       {" "}
       {/* Umumiy layout uchun flex */}
       <div className="sm:hidden">

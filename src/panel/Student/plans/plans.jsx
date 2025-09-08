@@ -24,62 +24,54 @@ const Plans = () => {
     },
     {
       id: 2,
-      planName: "React.js o'rganishni tugatish",
-      description:
-        "Frontend rivojlanish uchun React.js ni to‘liq o‘zlashtirish.",
+      planName: "Javascript chuqurroq o‘rganish",
+      description: "Advanced JS mavzulari va optimizatsiya.",
       planType: "kurs",
-      startDate: "2024-09-01",
-      endDate: "2024-12-31",
-      priority: "yuqori",
+      startDate: "2024-10-01",
+      endDate: "2025-01-15",
+      priority: "shoshilinch",
       tasks: [
-        { id: 101, text: "React asoslari", completed: true },
-        { id: 102, text: "State va Lifecycle", completed: false },
-        { id: 103, text: "Hooks", completed: false },
+        { id: 201, text: "ES6+", completed: false },
+        { id: 202, text: "Async/Await", completed: false },
       ],
     },
     {
-      id: 3,
-      planName: "React.js o'rganishni tugatish",
-      description:
-        "Frontend rivojlanish uchun React.js ni to‘liq o‘zlashtirish.",
+      id: 2,
+      planName: "Javascript chuqurroq o‘rganish",
+      description: "Advanced JS mavzulari va optimizatsiya.",
       planType: "kurs",
-      startDate: "2024-09-01",
-      endDate: "2024-12-31",
-      priority: "yuqori",
+      startDate: "2024-10-01",
+      endDate: "2025-01-15",
+      priority: "shoshilinch",
       tasks: [
-        { id: 101, text: "React asoslari", completed: true },
-        { id: 102, text: "State va Lifecycle", completed: false },
-        { id: 103, text: "Hooks", completed: false },
+        { id: 201, text: "ES6+", completed: false },
+        { id: 202, text: "Async/Await", completed: false },
       ],
     },
     {
-      id: 4,
-      planName: "React.js o'rganishni tugatish",
-      description:
-        "Frontend rivojlanish uchun React.js ni to‘liq o‘zlashtirish.",
+      id: 2,
+      planName: "Javascript chuqurroq o‘rganish",
+      description: "Advanced JS mavzulari va optimizatsiya.",
       planType: "kurs",
-      startDate: "2024-09-01",
-      endDate: "2024-12-31",
-      priority: "yuqori",
+      startDate: "2024-10-01",
+      endDate: "2025-01-15",
+      priority: "shoshilinch",
       tasks: [
-        { id: 101, text: "React asoslari", completed: true },
-        { id: 102, text: "State va Lifecycle", completed: false },
-        { id: 103, text: "Hooks", completed: false },
+        { id: 201, text: "ES6+", completed: false },
+        { id: 202, text: "Async/Await", completed: false },
       ],
     },
     {
-      id: 5,
-      planName: "React.js o'rganishni tugatish",
-      description:
-        "Frontend rivojlanish uchun React.js ni to‘liq o‘zlashtirish.",
+      id: 2,
+      planName: "Javascript chuqurroq o‘rganish",
+      description: "Advanced JS mavzulari va optimizatsiya.",
       planType: "kurs",
-      startDate: "2024-09-01",
-      endDate: "2024-12-31",
-      priority: "yuqori",
+      startDate: "2024-10-01",
+      endDate: "2025-01-15",
+      priority: "shoshilinch",
       tasks: [
-        { id: 101, text: "React asoslari", completed: true },
-        { id: 102, text: "State va Lifecycle", completed: false },
-        { id: 103, text: "Hooks", completed: false },
+        { id: 201, text: "ES6+", completed: false },
+        { id: 202, text: "Async/Await", completed: false },
       ],
     },
   ]);
@@ -136,18 +128,23 @@ const Plans = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#f0f2f5] dark:bg-gray-900 overflow-y-hidden">
-      <div className="sm:hidden mb-12">
-        <MobileNavbar />
+    <div className="w-full min-h-screen custom_bg dark:bg-gray-900 flex">
+      {/* Sidebar (faqat katta ekranda) */}
+      <div className="hidden sm:block w-64 h-screen fixed left-0 top-0 bg-white shadow">
+        <Sidebar />
       </div>
 
-      <div className="flex overflow-hidden h-screen">
-        <div className="hidden sm:block">
-          <Sidebar />
+      {/* Asosiy kontent */}
+      <div className="flex-1 flex flex-col sm:ml-64">
+        {/* Mobile navbar */}
+        <div className="sm:hidden">
+          <MobileNavbar />
         </div>
 
-        <div className="flex-1 p-4 sm:p-6 lg:p-8 sm:overflow-y-auto overflow-y-hidden">
+        {/* Scroll bo‘ladigan qism */}
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto mt-15 sm:mt-0">
           <div className="max-w-6xl mx-auto space-y-8 pb-8">
+            {/* Header */}
             <div className="max-w-4xl mx-auto">
               <div className="flex justify-between items-center shadow py-4 px-4 rounded-2xl bg-white">
                 <h1 className="text-2xl font-bold">Rejalar</h1>
@@ -160,6 +157,7 @@ const Plans = () => {
               </div>
             </div>
 
+            {/* Rejalar ro‘yxati */}
             {plans.length === 0 ? (
               <div className="bg-white shadow-xl rounded-2xl p-8 text-center text-gray-600">
                 <p className="text-xl font-semibold">
@@ -173,7 +171,7 @@ const Plans = () => {
                     key={plan.id}
                     className="relative bg-white shadow-lg rounded-xl p-6 border border-gray-200 flex flex-col justify-between"
                   >
-                    {/* Priority Badge - yuqori o‘ngda */}
+                    {/* Priority Badge */}
                     <span
                       className={`absolute top-3 right-3 px-2 py-1 text-[10px] font-semibold rounded-full ${getPriorityColor(
                         plan.priority
@@ -228,16 +226,17 @@ const Plans = () => {
                       )}
                     </div>
 
+                    {/* Actions */}
                     <div className="mt-4 flex justify-between gap-2 border-t pt-3">
                       <button
                         onClick={() => handleEditPlan(plan)}
-                        className="bg-[#2980DD]  bg-opacity-25 py-1 px-2  rounded-[8px]  font-medium text-white  text-[14px] "
+                        className="bg-[#2980DD] bg-opacity-25 py-1 px-2 rounded-[8px] font-medium text-white text-[14px]"
                       >
                         Tahrirlash
                       </button>
                       <button
                         onClick={() => handleDeletePlan(plan.id)}
-                        className=" bg-[#FF0044] text-[14px]  text-white rounded-[10px]  bg-opacity-15  px-2 py-1 ml-4  "
+                        className="bg-[#FF0044] text-[14px] text-white rounded-[10px] bg-opacity-15 px-2 py-1 ml-4"
                       >
                         O‘chirish
                       </button>
@@ -250,7 +249,7 @@ const Plans = () => {
         </div>
       </div>
 
-      {/* Modal oynasi */}
+      {/* Modal */}
       <PlanFormModal
         isOpen={isModalOpen}
         onClose={() => {

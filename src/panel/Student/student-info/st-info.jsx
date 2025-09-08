@@ -12,11 +12,7 @@ import Sidebar from "../student-sidebar/sidebar";
 const StudentInfo = () => {
   const stats = [
     { name: "Email", value: "2312136a@jdu.uz", icon: EnvelopeIcon },
-    {
-      name: "Fakultet",
-      value: "Kompyuter Fanlari",
-      icon: BuildingOffice2Icon,
-    },
+    { name: "Fakultet", value: "Kompyuter Fanlari", icon: BuildingOffice2Icon },
     { name: "Telefon", value: "+998 90 123 45 67", icon: PhoneIcon },
     { name: "Umumiy Davomat", value: "92%", icon: ChartBarIcon },
     { name: "Joriy Semster", value: "6", icon: AcademicCapIcon },
@@ -32,19 +28,19 @@ const StudentInfo = () => {
   ];
 
   return (
-    <div className="w-full h-screen bg-[#f0f2f5] dark:bg-gray-900 flex">
+    <div className="w-full h-screen custom_bg dark:bg-gray-900 flex">
       {/* Mobil navbar */}
       <div className="sm:hidden fixed top-0 left-0 w-full z-10 bg-[#f0f2f5] dark:bg-gray-900">
         <MobileNavbar />
       </div>
 
       {/* Sidebar */}
-      <div className="hidden sm:block h-screen w-64 flex-shrink-0 border-r">
+      <div className="hidden sm:block h-screen w-64 flex-shrink-0">
         <Sidebar />
       </div>
 
       {/* Scroll qiladigan content */}
-      <div className="flex-1 h-screen overflow-y-auto p-4 sm:p-6 mt-15 sm:mt-0 ">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 pt-18 sm:pt-6">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Profil */}
           <div className="bg-white shadow-lg p-4 sm:p-6 rounded-2xl flex items-center gap-4 hover:shadow-xl transition">
