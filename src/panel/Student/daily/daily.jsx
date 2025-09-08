@@ -60,11 +60,26 @@ const Daily = () => {
               className={`flex flex-col justify-center items-center p-4 text-white ${item.color} w-24 flex-shrink-0`}
             >
               <span className="text-lg font-bold">{item.startTime}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+                />
+              </svg>
+
               <span className="text-lg font-bold">{item.endTime}</span>
             </div>
 
             {/* Details Block - Right Side */}
-            <div className="flex-grow p-4 bg-white flex flex-col justify-between">
+            <div className="flex-grow p-4 sm:p-2 bg-white flex flex-col justify-between">
               <h3 className="text-lg font-semibold text-gray-800 mb-1">
                 {item.title}
               </h3>
