@@ -147,7 +147,7 @@ const Plans = () => {
             {/* Header */}
             <div className="max-w-4xl mx-auto">
               <div className="flex justify-between items-center shadow py-4 px-4 rounded-2xl bg-white">
-                <h1 className="text-2xl font-bold">Rejalar</h1>
+                <h1 className="text-2xl font-bold text-[black]">Rejalar</h1>
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="bg-blue-600 text-white px-4 py-2 rounded-xl shadow hover:bg-blue-700"

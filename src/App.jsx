@@ -93,6 +93,7 @@ const router = createBrowserRouter(
           </PrivateRoute>
         }
       />
+      
       {/* Faqat Parent */}
       <Route
         path="parent-dashboard"
