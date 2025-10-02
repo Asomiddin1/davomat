@@ -16,6 +16,7 @@ import Dashboard from "./panel/Student/Dashboard";
 import TeacherDashboard from "./panel/teacher/teacher-dashboard";
 import AdminDashboard from "./panel/admin/admin-dashboard";
 import ParentDashboard from "./panel/parent/parent-dashboard";
+import SubjectDetail from "./panel/Student/student-info/subject-detail";
 
 
 // Role tekshiruvchi component
@@ -64,6 +65,14 @@ const router = createBrowserRouter(
         element={
           <PrivateRoute allowedRoles={["student"]}>
             <StudentInfo />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="student-info/subject-detail"
+        element={
+          <PrivateRoute allowedRoles={["student"]}>
+            <SubjectDetail />
           </PrivateRoute>
         }
       />

@@ -5,11 +5,17 @@ import {
   EnvelopeIcon,
   PhoneIcon,
   TrophyIcon,
+  XMarkIcon,
+  CheckIcon, 
 } from "@heroicons/react/24/outline";
 import MobileNavbar from "../navbar/mobile-navbar";
 import Sidebar from "../student-sidebar/sidebar";
+import { useNavigate } from "react-router-dom"; 
+
 
 const StudentInfo = () => {
+  const navigate = useNavigate(); // useNavigate hook'ini ishlatish
+
   const stats = [
     { name: "Email", value: "2312136a@jdu.uz", icon: EnvelopeIcon },
     { name: "Fakultet", value: "Kompyuter Fanlari", icon: BuildingOffice2Icon },
@@ -21,11 +27,16 @@ const StudentInfo = () => {
 
   const courses = [
     { id: 1, name: "Algoritmlar", grade: "A", attendance: "95%" },
-    { id: 2, name: "Ma’lumotlar bazasi", grade: "B+", attendance: "89%" },
+    { id: 2, name: "Ma’lumotlar bazasi", grade: "B", attendance: "89%" },
     { id: 3, name: "Kompyuter tarmoqlari", grade: "C", attendance: "75%" },
-    { id: 4, name: "Veb dasturlash", grade: "A-", attendance: "98%" },
+    { id: 4, name: "Veb dasturlash", grade: "A", attendance: "98%" },
     { id: 5, name: "Sun’iy intellekt", grade: "B", attendance: "85%" },
   ];
+
+  const handleRowClick = (courseId) => {
+    // Navigatsiyani amalga oshirish. Masalan, /subject-detail/1
+    navigate(`subject-detail`);
+  };
 
   return (
     <div className="w-full h-screen custom_bg dark:bg-gray-900 flex">
@@ -86,9 +97,8 @@ const StudentInfo = () => {
               <table className="w-full text-sm text-left text-gray-600">
                 <thead className="bg-gray-100 text-gray-700 text-sm">
                   <tr>
-                    <th className="px-4 py-2">#</th>
                     <th className="px-4 py-2">Fan nomi</th>
-                    <th className="px-4 py-2">Baho</th>
+                    <th className="px-4 py-2">Kretditlari</th>
                     <th className="px-4 py-2">Davomat</th>
                   </tr>
                 </thead>
@@ -96,24 +106,25 @@ const StudentInfo = () => {
                   {courses.map((course) => (
                     <tr
                       key={course.id}
-                      className="border-b hover:bg-gray-50 transition"
+                      className="border-b hover:bg-gray-50 transition cursor-pointer"
+                      onClick={() => handleRowClick(course.id)}
                     >
-                      <td className="px-4 py-2">{course.id}</td>
                       <td className="px-4 py-2">{course.name}</td>
                       <td
-                        className={`px-4 py-2 font-bold ${
-                          course.grade.startsWith("A")
-                            ? "text-green-600"
-                            : course.grade.startsWith("B")
-                            ? "text-yellow-600"
-                            : "text-red-600"
-                        }`}
+                        className={`px-4 py-2 font-bold flex items-center gap-2 ${course.grade.startsWith("C") ? "text-red-600" : "text-green-600"
+                          }`}
                       >
                         {course.grade}
+                        {course.grade.startsWith("C") ? (
+                          <XMarkIcon className="h-6 w-6" />
+                        ) : (
+                          <CheckIcon className="h-6 w-6" />
+                        )}
                       </td>
                       <td className="px-4 py-2">{course.attendance}</td>
                     </tr>
                   ))}
+
                 </tbody>
               </table>
             </div>
