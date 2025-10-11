@@ -76,7 +76,7 @@ const PlanFormModal = ({ isOpen, onClose, onSave, initialData = null }) => {
   const modalTitle = initialData ? "Rejani Tahrirlash" : "Yangi Reja Yaratish";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm p-4 overflow-y-auto animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000064] bg-opacity-50 backdrop-blur-sm p-4 overflow-y-auto animate-fade-in">
       <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-2xl transform transition-all duration-300 scale-100 opacity-100 animate-scale-up">
         <div className="flex justify-between items-center p-5 border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white">

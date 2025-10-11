@@ -16,48 +16,39 @@ const SubjectDetail = () => {
         {
             date: "2024-09-09",
             topic: "Saralash Algoritmlari (Bubble Sort)",
-            grade: 4, // Misol uchun, yaxshi baho
+            grade: 4, 
             attended: true,
         },
         {
             date: "2024-09-16",
-            topic: "Qidiruv Algoritmlari (Binary Search)",
-            grade: 0, // Baho qo'yilmagan yoki hali baholanmagan
+            topic: "Qidiruv Algoritmlari (Binary Search)", 
+            grade: 0, 
             attended: true,
         },
         {
             date: "2024-09-23",
             topic: "Graf Algoritmlariga kirish",
-            grade: 3, // Misol uchun, qoniqarli
-            attended: false, // Kelmaganlik ham alohida
+            grade: 3, 
+            attended: false, 
         },
         {
             date: "2024-09-30",
             topic: "Qisqa yo'l algoritmi (Dijkstra)",
-            grade: 2, // Misol uchun, yomon baho
+            grade: 2, 
             attended: true,
         },
-        // Qo'shimcha dars sanalarini shu yerga qo'shishingiz mumkin
     ];
 
-    const currentSubject = "Algoritmlar"; // Namuna uchun fanni nomi
+    const currentSubject = "Algoritmlar";
 
-    // Bahoga qarab rang klassini qaytaruvchi funksiya
-    const getGradeClass = (grade) => {
-        if (grade >= 4) { // 4 va 5 (A'lo va Yaxshi)
-            return "bg-green-100 text-green-700";
-        }
-        if (grade === 3) { // 3 (Qoniqarli)
-            return "bg-yellow-100 text-yellow-700";
-        }
-        if (grade > 0 && grade < 3) { // 1 va 2 (Yomon)
-            return "bg-red-100 text-red-700";
-        }
-        return "text-gray-400"; // Baho 0 bo'lsa (qo'yilmagan)
+    // FUNKSIYA: Sanadagi chiziqchalarni nuqtaga almashtirish
+    const formatNutaliDate = (dateString) => {
+        // "2024-09-02" ni "2024.09.02" ga o'zgartiradi
+        return dateString.replace(/-/g, '.');
     };
 
     return (
-        <div className="flex w-full sm:h-[100vh] overflow-y-hidden ">
+        <div className="flex w-full sm:h-[100vh] overflow-y-hidden h-[100vh]">
             <div className="  sm:hidden ">
                 <MobileNavbar />
             </div>
@@ -75,7 +66,7 @@ const SubjectDetail = () => {
                         </Link>
                     </div>
                     <div className="flex w-[98%] justify-center items-center">
-                        <h1 className="text-[22px] text-bold sm:ml-[-10%] ml-[-5%]">{currentSubject} Fanidan Davomat</h1>
+                        <h1 className="text-lg sm:text-[22px] text-gray-900 font-semibold sm:ml-[-10%] ml-[-5%]">{currentSubject} Fanidan Davomat</h1>
                     </div>
                 </div>
 
@@ -92,12 +83,12 @@ const SubjectDetail = () => {
                             </div>
                         </div>
 
-                        <div className="overflow-x-auto">
+                        <div className="overflow-x-auto w-full">
                             <table className="w-full text-sm text-left text-gray-600">
-                                <thead className="bg-gray-50 text-gray-700 text-sm border-b">
+                                <thead className="bg-gray-300 text-gray-700 text-sm border-b">
                                     <tr>
-                                        <th className="px-4 py-3">Sana</th>
-                                        <th className="px-4 py-3">Mavzu</th>
+                                        <th className="px-4 py-3 min-w-28">Sana</th>
+                                        <th className="px-4 py-3 min-w-64">Mavzu</th>
                                         <th className="px-4 py-3 text-center">Baho</th>
                                         <th className="px-4 py-3 text-center">Kelgan</th>
                                     </tr>
@@ -106,19 +97,19 @@ const SubjectDetail = () => {
                                     {detailedAttendanceData.map((lesson, index) => (
                                         <tr
                                             key={index}
-                                            className="border-b hover:bg-gray-50 transition"
+                                            className="border-b hover:bg-gray-100 transition"
                                         >
-                                            <td className="px-4 py-3 font-medium text-gray-900">
-                                                {lesson.date}
+                                            {/* BU QISM O'ZGARTIRILDI: Sanani nuqtali formatga o'tkazish */}
+                                            <td className="px-4 py-3 font-medium text-gray-900 min-w-28">
+                                                {formatNutaliDate(lesson.date)} 
                                             </td>
-                                            <td className="px-4 py-3">{lesson.topic}</td>
+                                            
+                                            <td className="px-4 py-3 min-w-64 whitespace-normal">{lesson.topic}</td>
 
-                                            {/* Baho ustuni: Sonli bahoga qarab rang beriladi */}
+                                            {/* Baho ustuni */}
                                             <td className="px-4 py-3 text-center font-bold">
                                                 {lesson.grade > 0 ? (
-                                                    <span
-                                                        className={`inline-flex items-center justify-center p-1 rounded-full  w-8`}
-                                                    >
+                                                    <span>
                                                         {lesson.grade}
                                                     </span>
                                                 ) : (

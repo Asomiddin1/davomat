@@ -2,18 +2,31 @@
 import {
   ListBulletIcon,
   ArrowLeftStartOnRectangleIcon,
+  HomeIcon,
+  AcademicCapIcon
 } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 
 const SidebarTeacher = () => {
-  const location = useLocation(); // bu orqali hozirgi url ni olamiz
-
+  const location = useLocation(); 
   const menuItems = [
     {
-      name: "Dashboard",
+      name: "Dasr jadvali",
       icon: ListBulletIcon,
       notification: 0,
       link: "/tacher-dashboard",
+    },
+    {
+      name: "Gruhlar",
+      icon: AcademicCapIcon,
+      notification: 0,
+      link: "/groups",
+    },
+     {
+      name: "Rooms",
+      icon: HomeIcon,
+      notification: 0,
+      link: "/rooms",
     },
   ];
 

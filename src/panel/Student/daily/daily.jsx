@@ -13,7 +13,7 @@ const scheduleData = [
     borderColor: "border-gray-500", // Corresponding border color
   },
   {
-    startTime: "10:20",
+    startTime: "10:25",
     endTime: "11:40",
     title: "Yapon tili",
     type: "Maruza",
